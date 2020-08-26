@@ -5,7 +5,8 @@ public class Duke {
         boolean isBotRunning = true;
         String enteredCommand;
         Scanner in = new Scanner(System.in);
-        String[] taskList = new String[100];
+
+        Task[] taskList = new Task[100];
         int taskCount = 0;
 
         System.out.println("____________________________________________________________");
@@ -24,16 +25,29 @@ public class Duke {
             else if (enteredCommand.equals("list")) {
                 System.out.println("____________________________________________________________");
                 for (int i = 0; i < taskCount; i++) {
-                    System.out.println(String.format("%d. %s", i+1, taskList[i]));
+                    System.out.println(String.format("%d. [%s] %s", i + 1, taskList[i].getStatusIcon(), taskList[i].description));
                 }
+                System.out.println("____________________________________________________________");
+            }
+            // if task indicated as done, update it in the list
+            else if (enteredCommand.contains("done")) {
+                int donePosition = enteredCommand.indexOf("done");
+                int doneTaskIndex = Integer.parseInt(enteredCommand.substring(donePosition+5));
+                taskList[doneTaskIndex-1].markAsDone();
+
+                System.out.println("____________________________________________________________");
+                System.out.println("I have noted the completion of this task: ");
+                System.out.println(String.format("  [%s] %s", taskList[doneTaskIndex-1].getStatusIcon(), taskList[doneTaskIndex-1].description));
                 System.out.println("____________________________________________________________");
             }
             // adds commands to the task list
             else {
-                taskList[taskCount] = enteredCommand;
+                Task newTaskToAdd = new Task(enteredCommand);
+                taskList[taskCount] = newTaskToAdd;
                 taskCount++;
+
                 System.out.println("____________________________________________________________");
-                System.out.println("> added: " + enteredCommand);
+                System.out.println("I have added \"" + enteredCommand + "\" to your list of tasks.");
                 System.out.println("____________________________________________________________");
             }
         }
