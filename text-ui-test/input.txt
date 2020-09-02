@@ -1,0 +1,10 @@
+todo everything
+deadline submit increments /by tonight
+event party /at everyday
+list
+done 1
+list
+done 2
+done 3
+list
+bye
