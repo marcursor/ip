@@ -15,4 +15,10 @@ public class Task {
         this.isDone = true;
     }
 
+    @Override
+    public String toString() {
+        String message = (String.format("[%s] %s", getStatusIcon(), description));
+        return message;
+    }
+
 }
