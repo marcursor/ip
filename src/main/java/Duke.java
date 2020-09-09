@@ -1,6 +1,7 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 
+
 public class Duke {
     private static TaskManager taskManager = new TaskManager();
 
@@ -26,10 +27,15 @@ public class Duke {
 
         ArrayList<Task> taskList = new ArrayList<Task>();
 
-        while (taskManager.getIsRunning() == true) {
+        while (taskManager.getIsRunning()) {
             userInput = in.nextLine();
-            processedInput = taskManager.processInput(userInput);
-            taskManager.runCommand(processedInput, taskList);
+            try {
+                processedInput = taskManager.processInput(userInput);
+                taskManager.runCommand(processedInput, taskList);
+            } catch (InvalidCommandException e) {
+                System.out.println(e.errorMessage);
+            }
+
         }
     }
 

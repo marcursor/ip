@@ -3,7 +3,10 @@ public class Task {
     protected boolean isDone;
 
 
-    public Task(String description) {
+    public Task(String description) throws missingDescriptionException {
+        if (description.isBlank()) {
+            throw new missingDescriptionException();
+        }
         this.description = description;
         this.isDone = false;
     }
