@@ -1,8 +1,11 @@
 public class Deadline extends Task {
     protected String by;
 
-    public Deadline(String description, String by) {
+    public Deadline(String description, String by) throws MissingDescriptionException, MissingDateException {
         super(description);
+        if (by.isBlank()) {
+            throw new MissingDateException();
+        }
         this.by = by;
     }
 
