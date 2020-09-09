@@ -1,6 +1,10 @@
+package duke.task;
+
+import duke.exception.MissingDescriptionException;
+
 public class Task {
-    protected String description;
-    protected boolean isDone;
+    public String description;
+    public boolean isDone;
 
 
     public Task(String description) throws MissingDescriptionException {
@@ -21,8 +25,7 @@ public class Task {
 
     @Override
     public String toString() {
-        String message = (String.format("[%s] %s", getStatusIcon(), description));
-        return message;
+        return (String.format("[%s] %s", getStatusIcon(), description));
     }
 
 }

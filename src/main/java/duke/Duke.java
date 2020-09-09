@@ -1,3 +1,9 @@
+package duke;
+
+import duke.exception.InvalidCommandException;
+import duke.exception.MissingDescriptionOrDateException;
+import duke.task.Task;
+
 import java.util.Scanner;
 import java.util.ArrayList;
 
