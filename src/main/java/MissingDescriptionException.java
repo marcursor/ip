@@ -1,4 +1,4 @@
-public class missingDescriptionException extends Exception {
+public class MissingDescriptionException extends Exception {
     public String errorMessage;
 
 //    public missingDescriptionException(String taskType) {

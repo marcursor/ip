@@ -33,10 +33,24 @@ public class Duke {
                 processedInput = taskManager.processInput(userInput);
                 taskManager.runCommand(processedInput, taskList);
             } catch (InvalidCommandException e) {
-                System.out.println(e.errorMessage);
+                printInvalidCommandMessage();
+            } catch (MissingDescriptionOrDateException e) {
+                printMissingDescriptionOrDateMessage();
             }
 
         }
+    }
+
+    public static void printInvalidCommandMessage() {
+        System.out.println("____________________________________________________________");
+        System.out.println("My humblest apologies, I do not know what that means.");
+        System.out.println("____________________________________________________________");
+    }
+
+    public static void printMissingDescriptionOrDateMessage() {
+        System.out.println("____________________________________________________________");
+        System.out.println("Excuse me sir, but you seem to have excluded the description or date.");
+        System.out.println("____________________________________________________________");
     }
 
     public static void printGoodbyeMessage() {

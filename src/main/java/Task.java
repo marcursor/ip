@@ -3,9 +3,9 @@ public class Task {
     protected boolean isDone;
 
 
-    public Task(String description) throws missingDescriptionException {
+    public Task(String description) throws MissingDescriptionException {
         if (description.isBlank()) {
-            throw new missingDescriptionException();
+            throw new MissingDescriptionException();
         }
         this.description = description;
         this.isDone = false;

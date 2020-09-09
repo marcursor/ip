@@ -1,10 +1,10 @@
 public class Event extends Task {
     protected String at;
 
-    public Event(String description, String at) throws missingDateException, missingDescriptionException {
+    public Event(String description, String at) throws MissingDateException, MissingDescriptionException {
         super(description);
         if (at.isBlank()) {
-            throw new missingDateException("event");
+            throw new MissingDateException("event");
         }
         this.at = at;
     }

@@ -19,7 +19,7 @@ public class TaskManager {
         return userInput.split(" ",2);
     }
 
-    public void runCommand(String[] inputStringArray, ArrayList<Task> taskList) throws InvalidCommandException {
+    public void runCommand(String[] inputStringArray, ArrayList<Task> taskList) throws InvalidCommandException, MissingDescriptionOrDateException {
         String commandType = inputStringArray[0].toLowerCase();
         String commandDescription = "";
         Task newTaskToAdd;
@@ -39,38 +39,43 @@ public class TaskManager {
             try {
                 newTaskToAdd = new Todo(commandDescription);
                 addTaskToList(taskList, newTaskToAdd);
-            } catch (missingDescriptionException e) {
+            } catch (MissingDescriptionException e) {
                 printMissingTodoDescriptionMessage();
             }
             break;
         case "deadline":
             // add a deadline task
-
             String[] deadlineString = commandDescription.split("/by");
+            if (deadlineString.length < 2 ) {
+                throw new MissingDescriptionOrDateException();
+            }
             String deadlineTask = deadlineString[0];
             String deadlineDate = deadlineString[1];
 
             try {
                 newTaskToAdd = new Deadline(deadlineTask, deadlineDate);
                 addTaskToList(taskList, newTaskToAdd);
-            } catch (missingDescriptionException e) {
+            } catch (MissingDescriptionException e) {
                 printMissingDeadlineDescriptionMessage();
-            } catch (missingDateException e) {
+            } catch (MissingDateException e) {
                 printMissingDeadlineDateMessage();
             }
             break;
         case "event":
             // add an event task
             String[] eventString = commandDescription.split("/at");
+            if (eventString.length < 2 ) {
+                throw new MissingDescriptionOrDateException();
+            }
             String eventTask = eventString[0];
             String eventDate = eventString[1];
 
             try {
                 newTaskToAdd = new Event(eventTask, eventDate);
                 addTaskToList(taskList, newTaskToAdd);
-            } catch (missingDateException e) {
+            } catch (MissingDateException e) {
                 printMissingEventDescriptionMessage();
-            } catch (missingDescriptionException e) {
+            } catch (MissingDescriptionException e) {
                 printMissingEventDateMessage();
             }
             break;

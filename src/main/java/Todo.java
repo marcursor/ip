@@ -1,5 +1,5 @@
 public class Todo extends Task {
-    public Todo(String description) throws missingDescriptionException {
+    public Todo(String description) throws MissingDescriptionException {
         super(description);
     }
 
