@@ -4,7 +4,7 @@ public class Deadline extends Task {
     public Deadline(String description, String by) throws MissingDescriptionException, MissingDateException {
         super(description);
         if (by.isBlank()) {
-            throw new MissingDateException("deadline");
+            throw new MissingDateException();
         }
         this.by = by;
     }

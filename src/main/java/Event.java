@@ -4,7 +4,7 @@ public class Event extends Task {
     public Event(String description, String at) throws MissingDateException, MissingDescriptionException {
         super(description);
         if (at.isBlank()) {
-            throw new MissingDateException("event");
+            throw new MissingDateException();
         }
         this.at = at;
     }
