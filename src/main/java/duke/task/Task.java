@@ -6,7 +6,6 @@ public class Task {
     public String description;
     public boolean isDone;
 
-
     public Task(String description) throws MissingDescriptionException {
         if (description.isBlank()) {
             throw new MissingDescriptionException();
