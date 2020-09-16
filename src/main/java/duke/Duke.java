@@ -59,7 +59,6 @@ public class Duke {
     }
 
     public static void printFileNotFoundMessage() {
-        System.out.println("____________________________________________________________");
         System.out.println("No existing tasklist found");
         System.out.println("____________________________________________________________");
     }

@@ -23,11 +23,11 @@ import java.io.IOException;
 
 public class FileManager {
     public static final String TEXT_SEPARATOR = "|";
-    public static final String TASKLIST_DIRECTORY = System.getProperty("user.dir")+"data";
+    public static final String TASKLIST_DIRECTORY = "data";
     public static final String TASKLIST_FILENAME = "data/tasklist.txt";
 
     public static void initialiseFolder() {
-        Path filepath = Paths.get(TASKLIST_DIRECTORY);
+        Path filepath = Paths.get(System.getProperty("user.dir"),TASKLIST_DIRECTORY);
         if (!Files.exists(filepath)) {
             try {
                 Files.createDirectory(filepath);
@@ -84,6 +84,7 @@ public class FileManager {
         }
 
         System.out.println("Existing tasklist loaded.");
+        System.out.println("____________________________________________________________");
     }
 
     public static void saveTaskListToFile(ArrayList<Task> taskList) throws IOException {
