@@ -1,13 +1,18 @@
 package duke;
 
 import duke.exception.InvalidCommandException;
+
 import duke.task.Task;
 
-import java.util.ArrayList;
+import duke.exception.MissingDescriptionException;
+
+import java.io.FileNotFoundException;
 import java.util.Scanner;
+import java.util.ArrayList;
+
 
 public class Duke {
-    private static TaskManager taskManager = new TaskManager();
+    private static final TaskManager taskManager = new TaskManager();
 
     public static void main(String[] args) {
         printWelcomeMessage();
@@ -31,6 +36,16 @@ public class Duke {
 
         ArrayList<Task> taskList = new ArrayList<>();
 
+        FileManager.initialiseFolder();
+
+        try {
+            FileManager.loadTaskListFromFile(taskList);
+        } catch (MissingDescriptionException e) {
+            System.out.println("Loaded task is missing a description.");
+        } catch (FileNotFoundException e) {
+            printFileNotFoundMessage();
+        }
+
         while (taskManager.getIsRunning()) {
             userInput = in.nextLine();
             try {
@@ -41,6 +56,12 @@ public class Duke {
             }
 
         }
+    }
+
+    public static void printFileNotFoundMessage() {
+        System.out.println("____________________________________________________________");
+        System.out.println("No existing tasklist found");
+        System.out.println("____________________________________________________________");
     }
 
     public static void printInvalidCommandMessage() {

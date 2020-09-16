@@ -4,7 +4,7 @@ import duke.exception.MissingDateException;
 import duke.exception.MissingDescriptionException;
 
 public class Deadline extends Task {
-    protected String by;
+    public String by;
 
     public Deadline(String description, String by) throws MissingDescriptionException, MissingDateException {
         super(description);
