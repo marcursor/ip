@@ -10,6 +10,7 @@ import duke.task.Task;
 import duke.task.Todo;
 
 import java.util.ArrayList;
+import java.io.IOException;
 
 public class TaskManager {
     private boolean isRunning;
@@ -22,8 +23,8 @@ public class TaskManager {
         return isRunning;
     }
 
-    private void setIsRunning(boolean status) {
-        isRunning = status;
+    private void stopRunningDuke() {
+        isRunning = false;
     }
 
     public String[] processInput(String userInput) {
@@ -50,8 +51,11 @@ public class TaskManager {
             try {
                 newTaskToAdd = new Todo(commandDescription);
                 addTaskToList(taskList, newTaskToAdd);
+                FileManager.saveTaskListToFile(taskList);
             } catch (MissingDescriptionException e) {
                 printMissingTodoDescriptionMessage();
+            } catch (IOException e) {
+                printIOExceptionMessage();
             }
             break;
         case "deadline":
@@ -66,10 +70,13 @@ public class TaskManager {
             try {
                 newTaskToAdd = new Deadline(deadlineTask, deadlineDate);
                 addTaskToList(taskList, newTaskToAdd);
+                FileManager.saveTaskListToFile(taskList);
             } catch (MissingDescriptionException e) {
                 printMissingDeadlineDescriptionMessage();
             } catch (MissingDateException e) {
                 printMissingDeadlineDateMessage();
+            } catch (IOException e) {
+                printIOExceptionMessage();
             }
             break;
         case "event":
@@ -84,10 +91,13 @@ public class TaskManager {
             try {
                 newTaskToAdd = new Event(eventTask, eventDate);
                 addTaskToList(taskList, newTaskToAdd);
+                FileManager.saveTaskListToFile(taskList);
             } catch (MissingDateException e) {
                 printMissingEventDescriptionMessage();
             } catch (MissingDescriptionException e) {
                 printMissingEventDateMessage();
+            } catch (IOException e) {
+                printIOExceptionMessage();
             }
             break;
         case "done":
@@ -95,6 +105,11 @@ public class TaskManager {
 
             Task doneTask = taskList.get(doneTaskIndex);
             doneTask.markAsDone();
+            try {
+                FileManager.saveTaskListToFile(taskList);
+            } catch (IOException e) {
+                printIOExceptionMessage();
+            }
             printTaskCompletedMessage(doneTask);
             break;
         case "list":
@@ -108,7 +123,7 @@ public class TaskManager {
     }
 
     public void exitProgram() {
-        setIsRunning(false);
+        stopRunningDuke();
     }
 
     public void addTaskToList(ArrayList<Task> taskList, Task newTaskToAdd) {
@@ -172,5 +187,9 @@ public class TaskManager {
         System.out.println("____________________________________________________________");
         System.out.println("Pardon me, but the description of an event cannot be empty.");
         System.out.println("____________________________________________________________");
+    }
+
+    public void printIOExceptionMessage() {
+        System.out.println("IO exception encountered when saving task list to file.");
     }
 }

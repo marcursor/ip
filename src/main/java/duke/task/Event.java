@@ -4,7 +4,7 @@ import duke.exception.MissingDateException;
 import duke.exception.MissingDescriptionException;
 
 public class Event extends Task {
-    protected String at;
+    public String at;
 
     public Event(String description, String at) throws MissingDateException, MissingDescriptionException {
         super(description);
