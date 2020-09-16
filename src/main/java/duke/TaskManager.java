@@ -1,6 +1,7 @@
 package duke;
 
 import duke.exception.InvalidCommandException;
+import duke.exception.InvalidTaskException;
 import duke.exception.MissingDateException;
 import duke.exception.MissingDescriptionException;
 import duke.exception.MissingDescriptionOrDateException;
@@ -30,7 +31,7 @@ public class TaskManager {
         return userInput.split(" ",2);
     }
 
-    public void runCommand(String[] inputStringArray, ArrayList<Task> taskList) throws InvalidCommandException, MissingDescriptionOrDateException {
+    public void runCommand(String[] inputStringArray, ArrayList<Task> taskList) throws InvalidCommandException {
         String commandType = inputStringArray[0].toLowerCase();
         String commandDescription = "";
         Task newTaskToAdd;
@@ -56,16 +57,15 @@ public class TaskManager {
             break;
         case "deadline":
             // add a deadline task
-            String[] deadlineString = commandDescription.split("/by");
-            if (deadlineString.length < 2 ) {
-                throw new MissingDescriptionOrDateException();
-            }
-            String deadlineTask = deadlineString[0];
-            String deadlineDate = deadlineString[1];
-
             try {
+                String[] deadlineString = readTaskInput(commandType, commandDescription);
+                String deadlineTask = deadlineString[0];
+                String deadlineDate = deadlineString[1];
+
                 newTaskToAdd = new Deadline(deadlineTask, deadlineDate);
                 addTaskToList(taskList, newTaskToAdd);
+            } catch (MissingDescriptionOrDateException e) {
+                printMissingDescriptionOrDateMessage();
             } catch (MissingDescriptionException e) {
                 printMissingDeadlineDescriptionMessage();
             } catch (MissingDateException e) {
@@ -74,16 +74,15 @@ public class TaskManager {
             break;
         case "event":
             // add an event task
-            String[] eventString = commandDescription.split("/at");
-            if (eventString.length < 2 ) {
-                throw new MissingDescriptionOrDateException();
-            }
-            String eventTask = eventString[0];
-            String eventDate = eventString[1];
-
             try {
+                String[] eventString = readTaskInput(commandType, commandDescription);
+                String eventTask = eventString[0];
+                String eventDate = eventString[1];
+
                 newTaskToAdd = new Event(eventTask, eventDate);
                 addTaskToList(taskList, newTaskToAdd);
+            } catch (MissingDescriptionOrDateException e) {
+                printMissingDescriptionOrDateMessage();
             } catch (MissingDateException e) {
                 printMissingEventDescriptionMessage();
             } catch (MissingDescriptionException e) {
@@ -93,9 +92,16 @@ public class TaskManager {
         case "done":
             int doneTaskIndex = Integer.parseInt(commandDescription) - 1;
 
-            Task doneTask = taskList.get(doneTaskIndex);
-            doneTask.markAsDone();
-            printTaskCompletedMessage(doneTask);
+            try {
+                markTaskAsDone(taskList, doneTaskIndex);
+            } catch (InvalidTaskException e) {
+                printInvalidTaskCompleteMessage();
+            }
+            break;
+        case "delete":
+            int taskToDeleteIndex = Integer.parseInt(commandDescription) - 1;
+
+            deleteTaskFromList(taskList, taskToDeleteIndex);
             break;
         case "list":
             // list the current tasks
@@ -119,6 +125,50 @@ public class TaskManager {
         printTaskAddedMessage(arraySize, newTaskToAdd);
     }
 
+    public String[] readTaskInput(String commandType, String commandDescription) throws MissingDescriptionOrDateException {
+        String[] descriptionAndDate = new String[2];
+
+        switch (commandType) {
+        case "deadline":
+            String[] deadlineString = commandDescription.split("/by");
+            if (deadlineString.length < 2 ) {
+                throw new MissingDescriptionOrDateException();
+            }
+            descriptionAndDate = deadlineString;
+            break;
+        case "event":
+            String[] eventString = commandDescription.split("/at");
+            if (eventString.length < 2 ) {
+                throw new MissingDescriptionOrDateException();
+            }
+            descriptionAndDate = eventString;
+            break;
+        default:
+            break;
+        }
+
+        return descriptionAndDate;
+    }
+
+    public void markTaskAsDone(ArrayList<Task> taskList, int doneTaskIndex) throws InvalidTaskException {
+        if (doneTaskIndex < taskList.size()) {
+            Task doneTask = taskList.get(doneTaskIndex);
+            doneTask.markAsDone();
+            printTaskCompletedMessage(doneTask);
+        } else {
+            throw new InvalidTaskException();
+        }
+    }
+
+    public void deleteTaskFromList(ArrayList<Task> taskList, Integer taskToDeleteIndex) {
+        int arraySize;
+
+        Task deletedTask = taskList.get(taskToDeleteIndex);
+        taskList.remove(deletedTask);
+        arraySize = taskList.size();
+        printTaskDeletedMessage(arraySize, deletedTask);
+    }
+
     public void printList(ArrayList<Task> taskList, int arraySize) {
         System.out.println("____________________________________________________________");
         System.out.println("Here is your list of tasks:");
@@ -137,6 +187,14 @@ public class TaskManager {
         System.out.println("____________________________________________________________");
     }
 
+    public void printTaskDeletedMessage(int arraySize, Task deletedTask) {
+        System.out.println("____________________________________________________________");
+        System.out.println("I have removed the following from your list of tasks:");
+        System.out.println(deletedTask);
+        System.out.printf("You now have %d %s in the list.%n", arraySize, (arraySize == 1) ? "task":"tasks");
+        System.out.println("____________________________________________________________");
+    }
+
     public void printTaskCompletedMessage(Task doneTask) {
         System.out.println("____________________________________________________________");
         System.out.println("I have noted the completion of this task: ");
@@ -144,9 +202,21 @@ public class TaskManager {
         System.out.println("____________________________________________________________");
     }
 
+    public void printInvalidTaskCompleteMessage() {
+        System.out.println("____________________________________________________________");
+        System.out.println("That task is not on the list.");
+        System.out.println("____________________________________________________________");
+    }
+
     public void printMissingTodoDescriptionMessage() {
         System.out.println("____________________________________________________________");
         System.out.println("Pardon me, but the description of a todo task cannot be empty.");
+        System.out.println("____________________________________________________________");
+    }
+
+    public static void printMissingDescriptionOrDateMessage() {
+        System.out.println("____________________________________________________________");
+        System.out.println("Excuse me sir, but you seem to have excluded the description or date.");
         System.out.println("____________________________________________________________");
     }
 

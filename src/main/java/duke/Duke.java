@@ -1,12 +1,10 @@
 package duke;
 
 import duke.exception.InvalidCommandException;
-import duke.exception.MissingDescriptionOrDateException;
 import duke.task.Task;
 
-import java.util.Scanner;
 import java.util.ArrayList;
-
+import java.util.Scanner;
 
 public class Duke {
     private static TaskManager taskManager = new TaskManager();
@@ -31,7 +29,7 @@ public class Duke {
         String[] processedInput;
         Scanner in = new Scanner(System.in);
 
-        ArrayList<Task> taskList = new ArrayList<Task>();
+        ArrayList<Task> taskList = new ArrayList<>();
 
         while (taskManager.getIsRunning()) {
             userInput = in.nextLine();
@@ -40,8 +38,6 @@ public class Duke {
                 taskManager.runCommand(processedInput, taskList);
             } catch (InvalidCommandException e) {
                 printInvalidCommandMessage();
-            } catch (MissingDescriptionOrDateException e) {
-                printMissingDescriptionOrDateMessage();
             }
 
         }
@@ -50,12 +46,6 @@ public class Duke {
     public static void printInvalidCommandMessage() {
         System.out.println("____________________________________________________________");
         System.out.println("My humblest apologies, I do not know what that means.");
-        System.out.println("____________________________________________________________");
-    }
-
-    public static void printMissingDescriptionOrDateMessage() {
-        System.out.println("____________________________________________________________");
-        System.out.println("Excuse me sir, but you seem to have excluded the description or date.");
         System.out.println("____________________________________________________________");
     }
 
