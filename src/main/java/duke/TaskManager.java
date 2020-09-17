@@ -115,6 +115,11 @@ public class TaskManager {
             int taskToDeleteIndex = Integer.parseInt(commandDescription) - 1;
 
             deleteTaskFromList(taskList, taskToDeleteIndex);
+            try {
+                FileManager.saveTaskListToFile(taskList);
+            } catch (IOException e) {
+                printIOExceptionMessage();
+            }
             break;
         case "list":
             // list the current tasks
