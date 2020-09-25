@@ -32,11 +32,11 @@ public class TaskManager {
         return userInput.split(" ",2);
     }
 
-    public void runCommand(String[] inputStringArray, ArrayList<Task> taskList) throws InvalidCommandException {
+    public void runCommand(String[] inputStringArray, ArrayList<Task> tasksList) throws InvalidCommandException {
         String commandType = inputStringArray[0].toLowerCase();
         String commandDescription = "";
         Task newTaskToAdd;
-        int arraySize = taskList.size();
+        int arraySize = tasksList.size();
 
         if (inputStringArray.length > 1) {
             commandDescription = inputStringArray[1];
@@ -51,8 +51,8 @@ public class TaskManager {
             // add a todo task
             try {
                 newTaskToAdd = new Todo(commandDescription);
-                addTaskToList(taskList, newTaskToAdd);
-                FileManager.saveTaskListToFile(taskList);
+                addTaskToList(tasksList, newTaskToAdd);
+                FileManager.saveTasksListToFile(tasksList);
             } catch (MissingDescriptionException e) {
                 printMissingTodoDescriptionMessage();
             } catch (IOException e) {
@@ -67,8 +67,8 @@ public class TaskManager {
                 String deadlineDate = deadlineString[1];
 
                 newTaskToAdd = new Deadline(deadlineTask, deadlineDate);
-                addTaskToList(taskList, newTaskToAdd);
-                FileManager.saveTaskListToFile(taskList);
+                addTaskToList(tasksList, newTaskToAdd);
+                FileManager.saveTasksListToFile(tasksList);
             } catch (MissingDescriptionOrDateException e) {
                 printMissingDescriptionOrDateMessage();
             } catch (MissingDescriptionException e) {
@@ -87,8 +87,8 @@ public class TaskManager {
                 String eventDate = eventString[1];
 
                 newTaskToAdd = new Event(eventTask, eventDate);
-                addTaskToList(taskList, newTaskToAdd);
-                FileManager.saveTaskListToFile(taskList);
+                addTaskToList(tasksList, newTaskToAdd);
+                FileManager.saveTasksListToFile(tasksList);
             } catch (MissingDescriptionOrDateException e) {
                 printMissingDescriptionOrDateMessage();
             } catch (MissingDateException e) {
@@ -103,8 +103,8 @@ public class TaskManager {
             int doneTaskIndex = Integer.parseInt(commandDescription) - 1;
 
             try {
-                markTaskAsDone(taskList, doneTaskIndex);
-                FileManager.saveTaskListToFile(taskList);
+                markTaskAsDone(tasksList, doneTaskIndex);
+                FileManager.saveTasksListToFile(tasksList);
             } catch (InvalidTaskException e) {
                 printInvalidTaskCompleteMessage();
             } catch (IOException e) {
@@ -114,16 +114,16 @@ public class TaskManager {
         case "delete":
             int taskToDeleteIndex = Integer.parseInt(commandDescription) - 1;
 
-            deleteTaskFromList(taskList, taskToDeleteIndex);
+            deleteTaskFromList(tasksList, taskToDeleteIndex);
             try {
-                FileManager.saveTaskListToFile(taskList);
+                FileManager.saveTasksListToFile(tasksList);
             } catch (IOException e) {
                 printIOExceptionMessage();
             }
             break;
         case "list":
             // list the current tasks
-            printList(taskList, arraySize);
+            printList(tasksList, arraySize);
             break;
         default:
             // unknown command error
@@ -135,11 +135,11 @@ public class TaskManager {
         stopRunningDuke();
     }
 
-    public void addTaskToList(ArrayList<Task> taskList, Task newTaskToAdd) {
+    public void addTaskToList(ArrayList<Task> tasksList, Task newTaskToAdd) {
         int arraySize;
 
-        taskList.add(newTaskToAdd);
-        arraySize = taskList.size();
+        tasksList.add(newTaskToAdd);
+        arraySize = tasksList.size();
         printTaskAddedMessage(arraySize, newTaskToAdd);
     }
 
@@ -168,9 +168,9 @@ public class TaskManager {
         return descriptionAndDate;
     }
 
-    public void markTaskAsDone(ArrayList<Task> taskList, int doneTaskIndex) throws InvalidTaskException {
-        if (doneTaskIndex < taskList.size()) {
-            Task doneTask = taskList.get(doneTaskIndex);
+    public void markTaskAsDone(ArrayList<Task> tasksList, int doneTaskIndex) throws InvalidTaskException {
+        if (doneTaskIndex < tasksList.size()) {
+            Task doneTask = tasksList.get(doneTaskIndex);
             doneTask.markAsDone();
             printTaskCompletedMessage(doneTask);
         } else {
@@ -178,21 +178,21 @@ public class TaskManager {
         }
     }
 
-    public void deleteTaskFromList(ArrayList<Task> taskList, Integer taskToDeleteIndex) {
+    public void deleteTaskFromList(ArrayList<Task> tasksList, Integer taskToDeleteIndex) {
         int arraySize;
 
-        Task deletedTask = taskList.get(taskToDeleteIndex);
-        taskList.remove(deletedTask);
-        arraySize = taskList.size();
+        Task deletedTask = tasksList.get(taskToDeleteIndex);
+        tasksList.remove(deletedTask);
+        arraySize = tasksList.size();
         printTaskDeletedMessage(arraySize, deletedTask);
     }
 
-    public void printList(ArrayList<Task> taskList, int arraySize) {
+    public void printList(ArrayList<Task> tasksList, int arraySize) {
         System.out.println("____________________________________________________________");
         System.out.println("Here is your list of tasks:");
         for (int i = 0; i < arraySize; i++) {
             System.out.print((i+1) + ".");
-            System.out.println(taskList.get(i));
+            System.out.println(tasksList.get(i));
         }
         System.out.println("____________________________________________________________");
     }

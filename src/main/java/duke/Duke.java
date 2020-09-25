@@ -34,12 +34,12 @@ public class Duke {
         String[] processedInput;
         Scanner in = new Scanner(System.in);
 
-        ArrayList<Task> taskList = new ArrayList<>();
+        ArrayList<Task> tasksList = new ArrayList<>();
 
         FileManager.initialiseFolder();
 
         try {
-            FileManager.loadTaskListFromFile(taskList);
+            FileManager.loadTaskListFromFile(tasksList);
         } catch (MissingDescriptionException e) {
             System.out.println("Loaded task is missing a description.");
         } catch (FileNotFoundException e) {
@@ -50,7 +50,7 @@ public class Duke {
             userInput = in.nextLine();
             try {
                 processedInput = taskManager.processInput(userInput);
-                taskManager.runCommand(processedInput, taskList);
+                taskManager.runCommand(processedInput, tasksList);
             } catch (InvalidCommandException e) {
                 printInvalidCommandMessage();
             }
@@ -74,6 +74,4 @@ public class Duke {
         System.out.println("Very well. Goodbye.");
         System.out.println("____________________________________________________________");
     }
-
-
 }

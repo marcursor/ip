@@ -20,7 +20,9 @@ import java.util.Scanner;
 import java.io.FileWriter;
 import java.io.IOException;
 
-
+/**
+ *
+ */
 public class FileManager {
     public static final String TEXT_SEPARATOR = "|";
     public static final String TASKLIST_DIRECTORY = "data";
@@ -87,7 +89,7 @@ public class FileManager {
         System.out.println("____________________________________________________________");
     }
 
-    public static void saveTaskListToFile(ArrayList<Task> taskList) throws IOException {
+    public static void saveTasksListToFile(ArrayList<Task> taskList) throws IOException {
         FileWriter fw = new FileWriter(TASKLIST_FILENAME);
 
         for (Task task : taskList) {
