@@ -13,10 +13,10 @@ import duke.task.Todo;
 import java.util.ArrayList;
 import java.io.IOException;
 
-public class TaskManager {
+public class Parser {
     private boolean isRunning;
 
-    public TaskManager() {
+    public Parser() {
         this.isRunning = true;
     }
 
@@ -52,7 +52,7 @@ public class TaskManager {
             try {
                 newTaskToAdd = new Todo(commandDescription);
                 addTaskToList(tasksList, newTaskToAdd);
-                FileManager.saveTasksListToFile(tasksList);
+                Storage.saveTasksListToFile(tasksList);
             } catch (MissingDescriptionException e) {
                 printMissingTodoDescriptionMessage();
             } catch (IOException e) {
@@ -68,7 +68,7 @@ public class TaskManager {
 
                 newTaskToAdd = new Deadline(deadlineTask, deadlineDate);
                 addTaskToList(tasksList, newTaskToAdd);
-                FileManager.saveTasksListToFile(tasksList);
+                Storage.saveTasksListToFile(tasksList);
             } catch (MissingDescriptionOrDateException e) {
                 printMissingDescriptionOrDateMessage();
             } catch (MissingDescriptionException e) {
@@ -88,7 +88,7 @@ public class TaskManager {
 
                 newTaskToAdd = new Event(eventTask, eventDate);
                 addTaskToList(tasksList, newTaskToAdd);
-                FileManager.saveTasksListToFile(tasksList);
+                Storage.saveTasksListToFile(tasksList);
             } catch (MissingDescriptionOrDateException e) {
                 printMissingDescriptionOrDateMessage();
             } catch (MissingDateException e) {
@@ -104,7 +104,7 @@ public class TaskManager {
 
             try {
                 markTaskAsDone(tasksList, doneTaskIndex);
-                FileManager.saveTasksListToFile(tasksList);
+                Storage.saveTasksListToFile(tasksList);
             } catch (InvalidTaskException e) {
                 printInvalidTaskCompleteMessage();
             } catch (IOException e) {
@@ -116,7 +116,7 @@ public class TaskManager {
 
             deleteTaskFromList(tasksList, taskToDeleteIndex);
             try {
-                FileManager.saveTasksListToFile(tasksList);
+                Storage.saveTasksListToFile(tasksList);
             } catch (IOException e) {
                 printIOExceptionMessage();
             }

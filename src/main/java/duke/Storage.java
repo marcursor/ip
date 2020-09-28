@@ -23,7 +23,7 @@ import java.io.IOException;
 /**
  *
  */
-public class FileManager {
+public class Storage {
     public static final String TEXT_SEPARATOR = "|";
     public static final String TASKLIST_DIRECTORY = "data";
     public static final String TASKLIST_FILENAME = "data/tasklist.txt";

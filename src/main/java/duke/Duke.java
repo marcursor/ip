@@ -12,7 +12,11 @@ import java.util.ArrayList;
 
 
 public class Duke {
-    private static final TaskManager taskManager = new TaskManager();
+    private static final Parser parser = new Parser();
+
+    public Duke() {
+
+    }
 
     public static void main(String[] args) {
         printWelcomeMessage();
@@ -36,21 +40,21 @@ public class Duke {
 
         ArrayList<Task> tasksList = new ArrayList<>();
 
-        FileManager.initialiseFolder();
+        Storage.initialiseFolder();
 
         try {
-            FileManager.loadTaskListFromFile(tasksList);
+            Storage.loadTaskListFromFile(tasksList);
         } catch (MissingDescriptionException e) {
             System.out.println("Loaded task is missing a description.");
         } catch (FileNotFoundException e) {
             printFileNotFoundMessage();
         }
 
-        while (taskManager.getIsRunning()) {
+        while (parser.getIsRunning()) {
             userInput = in.nextLine();
             try {
-                processedInput = taskManager.processInput(userInput);
-                taskManager.runCommand(processedInput, tasksList);
+                processedInput = parser.processInput(userInput);
+                parser.runCommand(processedInput, tasksList);
             } catch (InvalidCommandException e) {
                 printInvalidCommandMessage();
             }
