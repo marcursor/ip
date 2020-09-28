@@ -1,5 +1,5 @@
 package duke.exception;
 
-public class MissingDescriptionException extends Exception {
+public class MissingDescriptionException extends DukeException {
 
 }

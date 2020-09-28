@@ -28,21 +28,27 @@ public class Storage {
     public static final String TASKLIST_DIRECTORY = "data";
     public static final String TASKLIST_FILENAME = "data/tasklist.txt";
 
-    public static void initialiseFolder() {
-        Path filepath = Paths.get(System.getProperty("user.dir"),TASKLIST_DIRECTORY);
-        if (!Files.exists(filepath)) {
+    public final Path path;
+
+    public Storage(Path path) {
+        this.path = path;
+    }
+
+    public void initialiseFolder() {
+        if (!Files.exists(path)) {
             try {
-                Files.createDirectory(filepath);
+                Files.createDirectory(path);
             } catch (IOException e) {
                 System.out.println("IO exception encountered when creating data directory.");
             }
         }
     }
 
-    public static void loadTaskListFromFile(ArrayList<Task> taskList) throws MissingDescriptionException, FileNotFoundException {
+    public ArrayList<Task> loadTaskListFromFile() throws MissingDescriptionException, FileNotFoundException {
         File f = new File(TASKLIST_FILENAME);
         Scanner s = new Scanner(f); // create a Scanner using the File as the source
         List<String> taskInfo;
+        ArrayList<Task> loadedTasksList = new ArrayList<>();
 
         while (s.hasNext()) {
             taskInfo = Arrays.asList(s.nextLine().split("\\|"));
@@ -53,7 +59,7 @@ public class Storage {
                 if (taskInfo.get(1).equals("1")) {
                     todo.markAsDone();
                 }
-                taskList.add(todo);
+                loadedTasksList.add(todo);
                 break;
             case "D":
                 try {
@@ -61,7 +67,7 @@ public class Storage {
                     if (taskInfo.get(1).equals("1")) {
                         deadline.markAsDone();
                     }
-                    taskList.add(deadline);
+                    loadedTasksList.add(deadline);
                 } catch (MissingDateException e) {
                     System.out.println("Loaded task is missing a date.");
                 }
@@ -72,7 +78,7 @@ public class Storage {
                     if (taskInfo.get(1).equals("1")) {
                         event.markAsDone();
                     }
-                    taskList.add(event);
+                    loadedTasksList.add(event);
                 } catch (MissingDateException e) {
                     System.out.println("Loaded task is missing a date.");
                 }
@@ -85,8 +91,7 @@ public class Storage {
 
         }
 
-        System.out.println("Existing tasklist loaded.");
-        System.out.println("____________________________________________________________");
+        return loadedTasksList;
     }
 
     public static void saveTasksListToFile(ArrayList<Task> taskList) throws IOException {

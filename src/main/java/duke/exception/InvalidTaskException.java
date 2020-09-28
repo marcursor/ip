@@ -1,4 +1,4 @@
 package duke.exception;
 
-public class InvalidTaskException extends Exception {
+public class InvalidTaskException extends DukeException {
 }
