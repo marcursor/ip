@@ -11,8 +11,7 @@ import java.nio.file.Paths;
 public class Duke {
     private Storage storage;
     private TasksList tasks;
-    private Ui ui;
-    private static final Parser parser = new Parser();
+    Ui ui;
 
     public Duke(Path filepath) {
         ui = new Ui();
@@ -22,9 +21,10 @@ public class Duke {
         storage.initialiseFolder();
         try {
             tasks = new TasksList(storage.loadTaskListFromFile());
+            ui.printTasksListsLoadedMessage();
         } catch (FileNotFoundException e) {
-            ui.printFileNotFoundMessage();
             tasks = new TasksList();
+            ui.printLoadingErrorMessage();
         } catch (MissingDescriptionException e) {
             System.out.println("Loaded task is missing a description.");
         }
@@ -36,11 +36,11 @@ public class Duke {
     }
 
     private void run() {
-        Ui.printWelcomeMessage();
+        ui.printWelcomeMessage();
 
-        Ui.handleUserInput();
+        ui.handleUserInput(tasks);
 
-        Ui.printGoodbyeMessage();
+        ui.printGoodbyeMessage();
     }
 
 }
