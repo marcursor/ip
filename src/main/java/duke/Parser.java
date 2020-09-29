@@ -22,7 +22,7 @@ public class Parser {
         return userInput.split(" ",2);
     }
 
-    public void runCommand(String[] inputStringArray, TasksList tasks, Ui ui) throws InvalidCommandException {
+    public void runCommand(String[] inputStringArray, TasksList tasks, Ui ui, Storage storage) throws InvalidCommandException {
         String commandType = inputStringArray[0].toLowerCase();
         String commandDescription = "";
         Task newTaskToAdd;
@@ -42,7 +42,7 @@ public class Parser {
             try {
                 newTaskToAdd = new Todo(commandDescription);
                 tasks.addTaskToList(newTaskToAdd, ui);
-                Storage.saveTasksListToFile(tasks.tasksList);
+                storage.saveTasksListToFile(tasks.tasksList);
             } catch (MissingDescriptionException e) {
                 ui.printMissingTodoDescriptionMessage();
             } catch (IOException e) {
@@ -58,7 +58,7 @@ public class Parser {
 
                 newTaskToAdd = new Deadline(deadlineTask, deadlineDate);
                 tasks.addTaskToList(newTaskToAdd, ui);
-                Storage.saveTasksListToFile(tasks.tasksList);
+                storage.saveTasksListToFile(tasks.tasksList);
             } catch (MissingDescriptionOrDateException e) {
                 ui.printMissingDescriptionOrDateMessage();
             } catch (MissingDescriptionException e) {
@@ -78,7 +78,7 @@ public class Parser {
 
                 newTaskToAdd = new Event(eventTask, eventDate);
                 tasks.addTaskToList(newTaskToAdd, ui);
-                Storage.saveTasksListToFile(tasks.tasksList);
+                storage.saveTasksListToFile(tasks.tasksList);
             } catch (MissingDescriptionOrDateException e) {
                 ui.printMissingDescriptionOrDateMessage();
             } catch (MissingDateException e) {
@@ -94,7 +94,7 @@ public class Parser {
 
             try {
                 tasks.markTaskAsDone(doneTaskIndex, ui);
-                Storage.saveTasksListToFile(tasks.tasksList);
+                storage.saveTasksListToFile(tasks.tasksList);
             } catch (InvalidTaskException e) {
                 ui.printInvalidTaskCompleteMessage();
             } catch (IOException e) {
@@ -106,7 +106,7 @@ public class Parser {
 
             tasks.deleteTaskFromList(taskToDeleteIndex, ui);
             try {
-                Storage.saveTasksListToFile(tasks.tasksList);
+                storage.saveTasksListToFile(tasks.tasksList);
             } catch (IOException e) {
                 ui.printIOExceptionMessage();
             }
@@ -121,9 +121,9 @@ public class Parser {
         }
     }
 
-    public void parseInput(String input, TasksList tasks, Ui ui) throws InvalidCommandException {
+    public void parseInput(String input, TasksList tasks, Ui ui, Storage storage) throws InvalidCommandException {
             String[] processedInput = processInput(input);
-            runCommand(processedInput, tasks, ui);
+            runCommand(processedInput, tasks, ui, storage);
     }
 
     public String[] readTaskInput(String commandType, String commandDescription) throws MissingDescriptionOrDateException {

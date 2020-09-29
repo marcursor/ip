@@ -94,7 +94,7 @@ public class Storage {
         return loadedTasksList;
     }
 
-    public static void saveTasksListToFile(ArrayList<Task> taskList) throws IOException {
+    public void saveTasksListToFile(ArrayList<Task> taskList) throws IOException {
         FileWriter fw = new FileWriter(TASKLIST_FILENAME);
 
         for (Task task : taskList) {

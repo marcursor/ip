@@ -30,14 +30,14 @@ public class Ui {
         stopRunningDuke();
     }
 
-    public void handleUserInput(TasksList tasks) {
+    public void handleUserInput(TasksList tasks, Storage storage) {
         String userInput;
         Scanner in = new Scanner(System.in);
 
         while (getIsRunning()) {
             userInput = in.nextLine();
             try {
-                parser.parseInput(userInput, tasks, this);
+                parser.parseInput(userInput, tasks, this, storage);
             } catch (InvalidCommandException e) {
                 printInvalidCommandMessage();
             }
