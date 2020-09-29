@@ -1,10 +1,6 @@
 package duke;
 
-import duke.exception.InvalidCommandException;
-import duke.exception.InvalidTaskException;
-import duke.exception.MissingDateException;
-import duke.exception.MissingDescriptionException;
-import duke.exception.MissingDescriptionOrDateException;
+import duke.exception.*;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
@@ -26,7 +22,6 @@ public class Parser {
         String commandType = inputStringArray[0].toLowerCase();
         String commandDescription = "";
         Task newTaskToAdd;
-        int arraySize = tasks.arraySize;
 
         if (inputStringArray.length > 1) {
             commandDescription = inputStringArray[1];
@@ -113,7 +108,20 @@ public class Parser {
             break;
         case "list":
             // list the current tasks
-            ui.printList(tasks.tasksList, arraySize);
+            ui.printList(tasks.tasksList, tasks.arraySize);
+            break;
+        case "find":
+            String keyword = commandDescription;
+            ArrayList<Task> matchingTasksList = null;
+
+            try {
+                matchingTasksList = tasks.findMatchingTasksInList(keyword);
+                ui.printList(matchingTasksList, matchingTasksList.size());
+            } catch (MissingDescriptionException e) {
+                ui.printMissingKeywordMessage();
+            } catch (NoMatchingTasksException e) {
+                ui.printNoMatchingTasksMessage();
+            }
             break;
         default:
             // unknown command error

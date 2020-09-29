@@ -1,9 +1,13 @@
 package duke;
 
 import duke.exception.InvalidTaskException;
+import duke.exception.MissingDescriptionException;
+import duke.exception.NoMatchingTasksException;
 import duke.task.Task;
 
 import java.util.ArrayList;
+
+import static java.util.stream.Collectors.toList;
 
 public class TasksList {
     public final ArrayList<Task> tasksList;
@@ -42,5 +46,21 @@ public class TasksList {
         tasksList.remove(deletedTask);
         arraySize = tasksList.size();
         ui.printTaskDeletedMessage(arraySize, deletedTask);
+    }
+
+    public ArrayList<Task> findMatchingTasksInList(String keyword) throws MissingDescriptionException, NoMatchingTasksException {
+        if (keyword.isBlank()) {
+            throw new MissingDescriptionException();
+        }
+
+        ArrayList<Task> filteredTaskList = (ArrayList<Task>) tasksList.stream()
+                .filter((s) -> s.getDescription().contains(keyword))
+                .collect(toList());
+
+        if (filteredTaskList.size() == 0) {
+            throw new NoMatchingTasksException();
+        }
+
+        return filteredTaskList;
     }
 }
