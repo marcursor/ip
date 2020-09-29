@@ -1,11 +1,8 @@
 package duke;
 
 import duke.exception.InvalidCommandException;
-import duke.exception.MissingDescriptionException;
 import duke.task.Task;
 
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 

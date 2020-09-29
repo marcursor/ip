@@ -1,6 +1,11 @@
 package duke;
 
-import duke.exception.*;
+import duke.exception.InvalidCommandException;
+import duke.exception.MissingDateException;
+import duke.exception.MissingDescriptionException;
+import duke.exception.MissingDescriptionOrDateException;
+import duke.exception.InvalidTaskException;
+import duke.exception.NoMatchingTasksException;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
@@ -112,7 +117,7 @@ public class Parser {
             break;
         case "find":
             String keyword = commandDescription;
-            ArrayList<Task> matchingTasksList = null;
+            ArrayList<Task> matchingTasksList;
 
             try {
                 matchingTasksList = tasks.findMatchingTasksInList(keyword);
