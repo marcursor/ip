@@ -9,6 +9,9 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ *
+ */
 public class Ui {
     private boolean isRunning;
 
@@ -30,6 +33,11 @@ public class Ui {
         stopRunningDuke();
     }
 
+    /**
+     *
+     * @param tasks
+     * @param storage
+     */
     public void handleUserInput(TasksList tasks, Storage storage) {
         String userInput;
         Scanner in = new Scanner(System.in);

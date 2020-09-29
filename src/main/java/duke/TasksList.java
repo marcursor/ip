@@ -5,6 +5,9 @@ import duke.task.Task;
 
 import java.util.ArrayList;
 
+/**
+ *
+ */
 public class TasksList {
     public final ArrayList<Task> tasksList;
     public int arraySize;
@@ -19,12 +22,23 @@ public class TasksList {
         this.arraySize = tasksList.size();
     }
 
+    /**
+     *
+     * @param newTaskToAdd
+     * @param ui
+     */
     public void addTaskToList(Task newTaskToAdd, Ui ui) {
         tasksList.add(newTaskToAdd);
         arraySize = tasksList.size();
         ui.printTaskAddedMessage(arraySize, newTaskToAdd);
     }
 
+    /**
+     *
+     * @param doneTaskIndex
+     * @param ui
+     * @throws InvalidTaskException
+     */
     public void markTaskAsDone(int doneTaskIndex, Ui ui) throws InvalidTaskException {
         if (doneTaskIndex < tasksList.size()) {
             Task doneTask = tasksList.get(doneTaskIndex);
@@ -35,6 +49,11 @@ public class TasksList {
         }
     }
 
+    /**
+     * 
+     * @param taskToDeleteIndex
+     * @param ui
+     */
     public void deleteTaskFromList(Integer taskToDeleteIndex, Ui ui) {
         int arraySize;
 

@@ -34,6 +34,9 @@ public class Storage {
         this.path = path;
     }
 
+    /**
+     *
+     */
     public void initialiseFolder() {
         if (!Files.exists(path)) {
             try {
@@ -44,6 +47,12 @@ public class Storage {
         }
     }
 
+    /**
+     *
+     * @return
+     * @throws MissingDescriptionException
+     * @throws FileNotFoundException
+     */
     public ArrayList<Task> loadTaskListFromFile() throws MissingDescriptionException, FileNotFoundException {
         File f = new File(TASKLIST_FILENAME);
         Scanner s = new Scanner(f); // create a Scanner using the File as the source
@@ -94,6 +103,11 @@ public class Storage {
         return loadedTasksList;
     }
 
+    /**
+     *
+     * @param taskList
+     * @throws IOException
+     */
     public void saveTasksListToFile(ArrayList<Task> taskList) throws IOException {
         FileWriter fw = new FileWriter(TASKLIST_FILENAME);
 

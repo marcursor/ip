@@ -13,15 +13,30 @@ import duke.task.Todo;
 import java.util.ArrayList;
 import java.io.IOException;
 
+/**
+ *
+ */
 public class Parser {
     public Parser() {
-
     }
 
+    /**
+     *
+     * @param userInput
+     * @return
+     */
     public String[] processInput(String userInput) {
         return userInput.split(" ",2);
     }
 
+    /**
+     *
+     * @param inputStringArray
+     * @param tasks
+     * @param ui
+     * @param storage
+     * @throws InvalidCommandException
+     */
     public void runCommand(String[] inputStringArray, TasksList tasks, Ui ui, Storage storage) throws InvalidCommandException {
         String commandType = inputStringArray[0].toLowerCase();
         String commandDescription = "";
@@ -126,6 +141,13 @@ public class Parser {
             runCommand(processedInput, tasks, ui, storage);
     }
 
+    /**
+     *
+     * @param commandType
+     * @param commandDescription
+     * @return
+     * @throws MissingDescriptionOrDateException
+     */
     public String[] readTaskInput(String commandType, String commandDescription) throws MissingDescriptionOrDateException {
         String[] descriptionAndDate = new String[2];
 
