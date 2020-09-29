@@ -1,11 +1,8 @@
 package duke;
 
 import duke.exception.InvalidCommandException;
-import duke.exception.MissingDescriptionException;
 import duke.task.Task;
 
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -152,5 +149,17 @@ public class Ui {
 
     public void printIOExceptionMessage() {
         System.out.println("IO exception encountered when saving task list to file.");
+    }
+
+    public void printMissingKeywordMessage() {
+        System.out.println("____________________________________________________________");
+        System.out.println("My humblest apologies, but I need a keyword to find matching tasks.");
+        System.out.println("____________________________________________________________");
+    }
+
+    public void printNoMatchingTasksMessage() {
+        System.out.println("____________________________________________________________");
+        System.out.println("I regret to inform you that I could not find any tasks matching that keyword.");
+        System.out.println("____________________________________________________________");
     }
 }
