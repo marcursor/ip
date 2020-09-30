@@ -1,6 +1,7 @@
 package duke;
 
 
+import duke.command.Command;
 import duke.exception.DukeException;
 import duke.exception.MissingDescriptionException;
 
@@ -37,10 +38,19 @@ public class Duke {
 
     private void run() {
         ui.printWelcomeMessage();
-
-        ui.handleUserInput(tasks, storage);
-
-        ui.printGoodbyeMessage();
+        boolean isExit = false;
+        while (!isExit) {
+            try {
+                String fullCommand = ui.handleUserInput();
+                Command c = Parser.parseCommand(fullCommand);
+                c.execute(storage, tasks, ui);
+                isExit = c.isExit();
+            } catch (DukeException e) {
+                ui.showErrorMessage(e.getMessage());
+            } finally {
+                ui.printDividerLine();
+            }
+        }
     }
 
 }
