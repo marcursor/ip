@@ -4,6 +4,9 @@ import duke.Storage;
 import duke.TasksList;
 import duke.Ui;
 
+/**
+ * Lists the current tasks.
+ */
 public class ListCommand extends Command {
     public ListCommand(String fullCommand) {
         super(fullCommand);

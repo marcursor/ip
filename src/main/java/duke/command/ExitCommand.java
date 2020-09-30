@@ -4,8 +4,9 @@ import duke.Storage;
 import duke.TasksList;
 import duke.Ui;
 
-import java.io.IOException;
-
+/**
+ * Saves the current tasks to an external txt file and prints the goodbye message.
+ */
 public class ExitCommand extends Command {
     public ExitCommand(String fullCommand) {
         super(fullCommand);

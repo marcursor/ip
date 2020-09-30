@@ -21,12 +21,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 /**
- *
+ * Saves and loads tasks to an external txt file.
  */
 public class Storage {
     public static final String TEXT_SEPARATOR = "|";
     public static final String TASKLIST_DIRECTORY = "data";
-    public static final String TASKLIST_FILENAME = "data/tasklist.txt";
+    public static final String TASKLIST_FILENAME = "data/taskslist.txt";
 
     public final Path path;
 
@@ -35,7 +35,7 @@ public class Storage {
     }
 
     /**
-     *
+     * Creates a data folder to save the taskslist.txt in if it does not exist yet.
      */
     public void initialiseFolder() {
         if (!Files.exists(path)) {
@@ -48,10 +48,11 @@ public class Storage {
     }
 
     /**
+     * Reads a list of tasks saved in taskslist.txt and adds them to the Duke tasks.tasksList
      *
-     * @return
-     * @throws MissingDescriptionException
-     * @throws FileNotFoundException
+     * @return an ArrayList containing the tasks saved in taskslist.txt
+     * @throws MissingDescriptionException if a task from the load file is missing a description field
+     * @throws FileNotFoundException if taskslist.txt is not found
      */
     public ArrayList<Task> loadTaskListFromFile() throws MissingDescriptionException, FileNotFoundException {
         File f = new File(TASKLIST_FILENAME);
@@ -91,7 +92,6 @@ public class Storage {
                 } catch (MissingDateException e) {
                     System.out.println("Loaded task is missing a date.");
                 }
-
                 break;
             default:
                 System.out.println("Loaded task is missing a type.");
@@ -103,19 +103,14 @@ public class Storage {
         return loadedTasksList;
     }
 
-<<<<<<< HEAD
     /**
+     * Saves the current tasks to taskslist.txt
      *
-     * @param taskList
-     * @throws IOException
+     * @param taskList the list containing the tasks
      */
-    public void saveTasksListToFile(ArrayList<Task> taskList) throws IOException {
-        FileWriter fw = new FileWriter(TASKLIST_FILENAME);
-=======
     public void saveTasksListToFile(ArrayList<Task> taskList) {
         try {
             FileWriter fw = new FileWriter(TASKLIST_FILENAME);
->>>>>>> master
 
             for (Task task : taskList) {
                 if (task instanceof Todo) {

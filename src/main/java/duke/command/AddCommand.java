@@ -3,7 +3,6 @@ package duke.command;
 import duke.Storage;
 import duke.TasksList;
 import duke.Ui;
-import duke.exception.InvalidTaskException;
 import duke.exception.MissingDateException;
 import duke.exception.MissingDescriptionException;
 import duke.exception.MissingDescriptionOrDateException;
@@ -12,6 +11,9 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.Todo;
 
+/**
+ * Adds a task to the tasksList.
+ */
 public class AddCommand extends Command {
     public AddCommand(String fullCommand) {
         super(fullCommand);

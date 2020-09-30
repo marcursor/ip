@@ -5,7 +5,7 @@ import duke.task.Task;
 import java.util.Scanner;
 
 /**
- *
+ * Handles interactions with the user.
  */
 public class Ui {
     private final Scanner in;
@@ -14,6 +14,11 @@ public class Ui {
         this.in = new Scanner(System.in);
     }
 
+    /**
+     * Reads user input.
+     *
+     * @return the string input by the user
+     */
     public String handleUserInput() {
         return in.nextLine();
     }

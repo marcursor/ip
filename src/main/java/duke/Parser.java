@@ -1,22 +1,20 @@
 package duke;
 
-import duke.command.AddCommand;
-import duke.command.Command;
-import duke.command.DeleteCommand;
-import duke.command.DoneCommand;
-import duke.command.ExitCommand;
-import duke.command.FindCommand;
-import duke.command.ListCommand;
+import duke.command.*;
 import duke.exception.InvalidCommandException;
 
 
 /**
- *
+ * Parses user input.
  */
 public class Parser {
-    public Parser() {
-    }
-
+    /**
+     * Parses user input into command for execution.
+     *
+     * @param userInput the full user input string
+     * @return the command based on user input
+     * @throws InvalidCommandException if the input does not correspond to a valid command
+     */
     public static Command parseCommand(String userInput) throws InvalidCommandException {
         String commandType;
 
@@ -36,20 +34,17 @@ public class Parser {
         case "deadline":
             // Fallthrough
         case "event":
-            // add a todo, deadline or event task
             return new AddCommand(userInput);
         case "done":
             return new DoneCommand(userInput);
         case "delete":
             return new DeleteCommand(userInput);
         case "list":
-            // list the current tasks
             return new ListCommand(userInput);
         case "find":
             return new FindCommand(userInput);
         default:
-            // unknown command error
-            throw new InvalidCommandException();
+            return new InvalidCommand(userInput);
         }
     }
 }
