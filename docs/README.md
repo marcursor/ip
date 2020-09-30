@@ -100,16 +100,16 @@ Format: `bye`
 Example of usage: `bye` saves the current tasks list to an external .txt file and ends the program 
 
 ## Command Summary
-|Feature|Command format|
-|:---|:---|
-|Add a Todo task| `todo [task_description]`|
-|Add a Deadline task| `deadline [task_description] /by [date]`|
-|Add an Event task| `event [task_description] /at [date]`|
-|Listing all tasks| `list`|
-|Marking a task as done| `done [task_index]`|
-|Deleting a task| `delete [task_index]`|
-|Finding tasks| `find [keyword(s)]`|
-|Exit program| `bye`|
+Feature|Command format
+---|---
+Add a Todo task| `todo [task_description]`
+Add a Deadline task| `deadline [task_description] /by [date]`
+Add an Event task| `event [task_description] /at [date]`
+Listing all tasks| `list`
+Marking a task as done| `done [task_index]`
+Deleting a task| `delete [task_index]`
+Finding tasks| `find [keyword(s)]`
+Exit program| `bye`
 
 
 
