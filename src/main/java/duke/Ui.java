@@ -40,6 +40,7 @@ public class Ui {
     }
 
     public void printLoadingErrorMessage() {
+        printDividerLine();
         System.out.println("No existing tasklist found, new tasklist created.");
     }
 
