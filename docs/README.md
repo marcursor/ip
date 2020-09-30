@@ -17,7 +17,7 @@ Duke is a Command Line Interface (CLI) based application that helps you manage y
 4. Type in `java -jar ip.jar` and enter.
 
 ## Usage
-> `Commands` are used to describe the format of a command,and words in square brackets e.g. `[arguments]` indicate parameters that need to be provided by you.
+> `Commands` are used to describe the format of a command, while words in square brackets e.g. `[arguments]` indicate parameters that need to be provided by you.
 
 ### Command Description `Command`
 
@@ -38,7 +38,7 @@ Example of usage: `example`
 * [Finding tasks](#find-tasks-find)
 * [Exiting the program](#exit-duke-program-bye)
 
->* The tasks list is saved to an external .txt file whenever the tasks list is modified (i.e. tasks are added, marked as done or deleted)
+> The tasks list is saved to an external .txt file whenever the tasks list is modified (i.e. tasks are added, marked as done or deleted)
 ### Add a Todo task `todo` 
 Adds a Todo task to the tasks list. Tasks are marked as incomplete by default when added.
 
