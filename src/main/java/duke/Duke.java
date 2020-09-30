@@ -9,11 +9,21 @@ import java.io.FileNotFoundException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+/**
+ * Entry point of the Duke application.
+ * Initializes the application and starts the interaction with the user.
+ */
 public class Duke {
-    private Storage storage;
+    private final Storage storage;
     private TasksList tasks;
     Ui ui;
 
+    /**
+     * Initializes the application, loading a pre-existing TasksList if available.
+     * Otherwise creates a new TasksList.
+     *
+     * @param filepath File path where the taskslist.txt is loaded from.
+     */
     public Duke(Path filepath) {
         ui = new Ui();
 
@@ -31,11 +41,10 @@ public class Duke {
         }
     }
 
-    public static void main(String[] args) {
-        Path filepath = Paths.get(System.getProperty("user.dir"),Storage.TASKLIST_DIRECTORY);
-        new Duke(filepath).run();
-    }
-
+    /**
+     * Displays the welcome message, then reads user inputs as commands and executes given commands.
+     * Inputs are read and executed until the exit command is given.
+     */
     private void run() {
         ui.printWelcomeMessage();
         boolean isExit = false;
@@ -53,4 +62,8 @@ public class Duke {
         }
     }
 
+    public static void main(String[] args) {
+        Path filepath = Paths.get(System.getProperty("user.dir"),Storage.TASKLIST_DIRECTORY);
+        new Duke(filepath).run();
+    }
 }

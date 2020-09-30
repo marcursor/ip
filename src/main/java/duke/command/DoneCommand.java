@@ -5,8 +5,9 @@ import duke.TasksList;
 import duke.Ui;
 import duke.exception.InvalidTaskException;
 
-//import java.io.IOException;
-
+/**
+ * Marks a task in the tasksList as done.
+ */
 public class DoneCommand extends Command {
     public DoneCommand(String fullCommand) {
         super(fullCommand);

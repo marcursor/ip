@@ -3,7 +3,6 @@ package duke.command;
 import duke.Storage;
 import duke.TasksList;
 import duke.Ui;
-import duke.exception.InvalidTaskException;
 import duke.exception.MissingDateException;
 import duke.exception.MissingDescriptionException;
 import duke.exception.MissingDescriptionOrDateException;
@@ -12,6 +11,9 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.Todo;
 
+/**
+ * Adds a task to the tasksList.
+ */
 public class AddCommand extends Command {
     public AddCommand(String fullCommand) {
         super(fullCommand);
@@ -29,8 +31,7 @@ public class AddCommand extends Command {
         }
 
         switch(taskType) {
-        case "todo":
-            // add a todo task
+        case "todo": // add a todo task
             try {
                 newTaskToAdd = new Todo(taskDescription);
                 tasks.addTaskToList(newTaskToAdd, ui);
@@ -39,8 +40,7 @@ public class AddCommand extends Command {
                 ui.printMissingTodoDescriptionMessage();
             }
             break;
-        case "deadline":
-            // add a deadline task
+        case "deadline": // add a deadline task
             try {
                 String[] deadlineString = parseDate(taskType, taskDescription);
                 String deadlineTask = deadlineString[0];
@@ -57,10 +57,9 @@ public class AddCommand extends Command {
                 ui.printMissingDescriptionOrDateMessage();
             }
             break;
-        case "event":
-            // add an event task
+        case "event": // add an event task
             try {
-                String[] eventString = parseDate(taskType, taskDescription);;
+                String[] eventString = parseDate(taskType, taskDescription);
                 String eventTask = eventString[0];
                 String eventDate = eventString[1];
 
@@ -80,6 +79,14 @@ public class AddCommand extends Command {
         }
     }
 
+    /**
+     * Checks user input for deadline or event tasks to ensure it has both a description and a date.
+     *
+     * @param commandType string describing the task type
+     * @param commandDescription string to be checked for description and date
+     * @return a string array containing the task description and date
+     * @throws MissingDescriptionOrDateException if either the description or date is missing
+     */
     public String[] parseDate(String commandType, String commandDescription) throws MissingDescriptionOrDateException {
         String[] descriptionAndDate = new String[2];
 

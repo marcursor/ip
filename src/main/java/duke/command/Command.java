@@ -5,6 +5,9 @@ import duke.TasksList;
 import duke.Ui;
 import duke.exception.InvalidExecutionException;
 
+/**
+ * Represents an executable command.
+ */
 public class Command {
     protected String fullCommand;
 

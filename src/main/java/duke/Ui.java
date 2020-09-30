@@ -1,11 +1,12 @@
 package duke;
 
-import duke.exception.DukeException;
 import duke.task.Task;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Handles interactions with the user.
+ */
 public class Ui {
     private final Scanner in;
 
@@ -13,6 +14,11 @@ public class Ui {
         this.in = new Scanner(System.in);
     }
 
+    /**
+     * Reads user input.
+     *
+     * @return the string input by the user
+     */
     public String handleUserInput() {
         return in.nextLine();
     }
@@ -52,7 +58,7 @@ public class Ui {
     }
 
     public void printTaskCompletedMessage(Task doneTask) {
-        System.out.println("I have noted the completion of this task: ");
+        System.out.println("I have noted the completion of this task:");
         System.out.printf("  [%s] %s%n", doneTask.getStatusIcon(), doneTask.description);
     }
 

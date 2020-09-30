@@ -5,10 +5,10 @@ import duke.TasksList;
 import duke.Ui;
 import duke.exception.MissingDescriptionException;
 import duke.exception.NoMatchingTasksException;
-import duke.task.Task;
 
-import java.util.ArrayList;
-
+/**
+ * Finds tasks matching a given keyword in the tasksList.
+ */
 public class FindCommand extends Command {
     public FindCommand(String fullCommand) {
         super(fullCommand);

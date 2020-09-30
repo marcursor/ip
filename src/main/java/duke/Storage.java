@@ -13,7 +13,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -21,12 +20,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 /**
- *
+ * Saves and loads tasks to an external txt file.
  */
 public class Storage {
     public static final String TEXT_SEPARATOR = "|";
     public static final String TASKLIST_DIRECTORY = "data";
-    public static final String TASKLIST_FILENAME = "data/tasklist.txt";
+    public static final String TASKLIST_FILENAME = "data/taskslist.txt";
 
     public final Path path;
 
@@ -34,7 +33,10 @@ public class Storage {
         this.path = path;
     }
 
-    public void initialiseFolder() {
+    /**
+     * Creates a data folder to save the taskslist.txt in if it does not exist yet.
+     */
+    protected void initialiseFolder() {
         if (!Files.exists(path)) {
             try {
                 Files.createDirectory(path);
@@ -44,7 +46,14 @@ public class Storage {
         }
     }
 
-    public ArrayList<Task> loadTaskListFromFile() throws MissingDescriptionException, FileNotFoundException {
+    /**
+     * Reads a list of tasks saved in taskslist.txt and adds them to the Duke tasks.tasksList
+     *
+     * @return an ArrayList containing the tasks saved in taskslist.txt
+     * @throws MissingDescriptionException if a task from the load file is missing a description field
+     * @throws FileNotFoundException if taskslist.txt is not found
+     */
+    protected ArrayList<Task> loadTaskListFromFile() throws MissingDescriptionException, FileNotFoundException {
         File f = new File(TASKLIST_FILENAME);
         Scanner s = new Scanner(f); // create a Scanner using the File as the source
         List<String> taskInfo;
@@ -82,7 +91,6 @@ public class Storage {
                 } catch (MissingDateException e) {
                     System.out.println("Loaded task is missing a date.");
                 }
-
                 break;
             default:
                 System.out.println("Loaded task is missing a type.");
@@ -94,6 +102,11 @@ public class Storage {
         return loadedTasksList;
     }
 
+    /**
+     * Saves the current tasks to taskslist.txt
+     *
+     * @param taskList the list containing the tasks
+     */
     public void saveTasksListToFile(ArrayList<Task> taskList) {
         try {
             FileWriter fw = new FileWriter(TASKLIST_FILENAME);
