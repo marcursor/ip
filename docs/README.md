@@ -100,6 +100,7 @@ Format: `bye`
 Example of usage: `bye` saves the current tasks list to an external .txt file and ends the program 
 
 ## Command Summary
+
 Feature|Command format
 ---|---
 Add a Todo task| `todo [task_description]`
