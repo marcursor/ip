@@ -53,18 +53,16 @@ public class TasksList {
         }
     }
 
-    /**
-     * 
-     * @param taskToDeleteIndex
-     * @param ui
-     */
-    public void deleteTaskFromList(Integer taskToDeleteIndex, Ui ui) {
-        int arraySize;
 
-        Task deletedTask = tasksList.get(taskToDeleteIndex);
-        tasksList.remove(deletedTask);
-        arraySize = tasksList.size();
-        ui.printTaskDeletedMessage(arraySize, deletedTask);
+    public void deleteTaskFromList(Integer taskToDeleteIndex, Ui ui) throws InvalidTaskException {
+        if (taskToDeleteIndex < tasksList.size()) {
+            Task deletedTask = tasksList.get(taskToDeleteIndex);
+            tasksList.remove(deletedTask);
+            arraySize = tasksList.size();
+            ui.printTaskDeletedMessage(arraySize, deletedTask);
+        } else {
+            throw new InvalidTaskException();
+        }
     }
 
     public ArrayList<Task> findMatchingTasksInList(String keyword) throws MissingDescriptionException, NoMatchingTasksException {

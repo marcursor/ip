@@ -103,6 +103,7 @@ public class Storage {
         return loadedTasksList;
     }
 
+<<<<<<< HEAD
     /**
      *
      * @param taskList
@@ -110,17 +111,25 @@ public class Storage {
      */
     public void saveTasksListToFile(ArrayList<Task> taskList) throws IOException {
         FileWriter fw = new FileWriter(TASKLIST_FILENAME);
+=======
+    public void saveTasksListToFile(ArrayList<Task> taskList) {
+        try {
+            FileWriter fw = new FileWriter(TASKLIST_FILENAME);
+>>>>>>> master
 
-        for (Task task : taskList) {
-            if (task instanceof Todo) {
-                fw.write("T"+ TEXT_SEPARATOR + ((task.isDone) ? "1":"0") + TEXT_SEPARATOR + task.description);
-            } else if (task instanceof Deadline) {
-                fw.write("D"+ TEXT_SEPARATOR + ((task.isDone) ? "1":"0") + TEXT_SEPARATOR + task.description + TEXT_SEPARATOR + ((Deadline) task).by);
-            } else if (task instanceof Event) {
-                fw.write("E"+ TEXT_SEPARATOR + ((task.isDone) ? "1":"0") + TEXT_SEPARATOR + task.description + TEXT_SEPARATOR + ((Event) task).at);
+            for (Task task : taskList) {
+                if (task instanceof Todo) {
+                    fw.write("T"+ TEXT_SEPARATOR + ((task.isDone) ? "1":"0") + TEXT_SEPARATOR + task.description);
+                } else if (task instanceof Deadline) {
+                    fw.write("D"+ TEXT_SEPARATOR + ((task.isDone) ? "1":"0") + TEXT_SEPARATOR + task.description + TEXT_SEPARATOR + ((Deadline) task).by);
+                } else if (task instanceof Event) {
+                    fw.write("E"+ TEXT_SEPARATOR + ((task.isDone) ? "1":"0") + TEXT_SEPARATOR + task.description + TEXT_SEPARATOR + ((Event) task).at);
+                }
+                fw.write("\n");
             }
-            fw.write("\n");
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        fw.close();
     }
 }
