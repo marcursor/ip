@@ -37,7 +37,7 @@ public class Storage {
     /**
      * Creates a data folder to save the taskslist.txt in if it does not exist yet.
      */
-    public void initialiseFolder() {
+    protected void initialiseFolder() {
         if (!Files.exists(path)) {
             try {
                 Files.createDirectory(path);
@@ -54,7 +54,7 @@ public class Storage {
      * @throws MissingDescriptionException if a task from the load file is missing a description field
      * @throws FileNotFoundException if taskslist.txt is not found
      */
-    public ArrayList<Task> loadTaskListFromFile() throws MissingDescriptionException, FileNotFoundException {
+    protected ArrayList<Task> loadTaskListFromFile() throws MissingDescriptionException, FileNotFoundException {
         File f = new File(TASKLIST_FILENAME);
         Scanner s = new Scanner(f); // create a Scanner using the File as the source
         List<String> taskInfo;
