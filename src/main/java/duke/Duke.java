@@ -14,15 +14,15 @@ import java.nio.file.Paths;
  * Initializes the application and starts the interaction with the user.
  */
 public class Duke {
-    private Storage storage;
+    private final Storage storage;
     private TasksList tasks;
     Ui ui;
 
     /**
-     * Initializes the application, loading a pre-existing taskslist if available.
-     * Otherwise creates a new taskslist.
+     * Initializes the application, loading a pre-existing TasksList if available.
+     * Otherwise creates a new TasksList.
      *
-     * @param filepath File path where the taskslist.txt is created and loaded from.
+     * @param filepath File path where the taskslist.txt is loaded from.
      */
     public Duke(Path filepath) {
         ui = new Ui();

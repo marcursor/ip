@@ -54,7 +54,7 @@ public class TasksList {
      * @throws InvalidTaskException if the task index exceeds the tasksList index range
      */
     public void markTaskAsDone(int doneTaskIndex, Ui ui) throws InvalidTaskException {
-        if (doneTaskIndex < tasksList.size() & doneTaskIndex > 0) {
+        if (doneTaskIndex < tasksList.size() & doneTaskIndex >= 0) {
             Task doneTask = tasksList.get(doneTaskIndex);
             doneTask.markAsDone();
             ui.printTaskCompletedMessage(doneTask);
@@ -71,7 +71,7 @@ public class TasksList {
      * @throws InvalidTaskException if the task index exceeds the tasksList index range
      */
     public void deleteTaskFromList(Integer taskToDeleteIndex, Ui ui) throws InvalidTaskException {
-        if (taskToDeleteIndex < tasksList.size() & taskToDeleteIndex > 0) {
+        if (taskToDeleteIndex < tasksList.size() & taskToDeleteIndex >= 0) {
             Task deletedTask = tasksList.get(taskToDeleteIndex);
             tasksList.remove(deletedTask);
             arraySize = tasksList.size();

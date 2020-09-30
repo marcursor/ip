@@ -58,7 +58,7 @@ public class Ui {
     }
 
     public void printTaskCompletedMessage(Task doneTask) {
-        System.out.println("I have noted the completion of this task: ");
+        System.out.println("I have noted the completion of this task:");
         System.out.printf("  [%s] %s%n", doneTask.getStatusIcon(), doneTask.description);
     }
 

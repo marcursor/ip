@@ -15,7 +15,7 @@ public class Parser {
      * @return the command based on user input
      * @throws InvalidCommandException if the input does not correspond to a valid command
      */
-    public static Command parseCommand(String userInput) throws InvalidCommandException {
+    public static Command parseCommand(String userInput) {
         String commandType;
 
         int index = userInput.indexOf(' ');
