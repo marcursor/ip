@@ -17,18 +17,15 @@ public class DeleteCommand extends Command {
     public void execute(Storage storage, TasksList tasks, Ui ui) {
         String commandDescription = fullCommand.replace("delete", "").trim();
 
-        int taskToDeleteIndex = -1;
         try {
-            taskToDeleteIndex = Integer.parseInt(commandDescription) - 1;
-        } catch (NumberFormatException e) {
-            ui.printMissingNumberMessage();
-        }
+            int taskToDeleteIndex = Integer.parseInt(commandDescription) - 1;
 
-        try {
             tasks.deleteTaskFromList(taskToDeleteIndex, ui);
             storage.saveTasksListToFile(tasks.tasksList);
         } catch (InvalidTaskException e) {
-            ui.printInvalidTaskCompleteMessage();
+            ui.printInvalidTaskIndexMessage();
+        } catch (NumberFormatException e) {
+            ui.printInvalidTaskIndexMessage();
         }
     }
 }

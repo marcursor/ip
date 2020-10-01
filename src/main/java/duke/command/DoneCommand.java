@@ -17,18 +17,14 @@ public class DoneCommand extends Command {
     public void execute(Storage storage, TasksList tasks, Ui ui) {
         String commandDescription = fullCommand.replace("done", "").trim();
 
-        int doneTaskIndex = -1;
         try {
-            doneTaskIndex = Integer.parseInt(commandDescription) - 1;
-        } catch (NumberFormatException e) {
-            ui.printMissingNumberMessage();
-        }
-
-        try {
+            int doneTaskIndex = Integer.parseInt(commandDescription) - 1;
             tasks.markTaskAsDone(doneTaskIndex, ui);
             storage.saveTasksListToFile(tasks.tasksList);
         } catch (InvalidTaskException e) {
-            ui.printInvalidTaskCompleteMessage();
+            ui.printInvalidTaskIndexMessage();
+        } catch (NumberFormatException e) {
+            ui.printInvalidTaskIndexMessage();
         }
     }
 }
