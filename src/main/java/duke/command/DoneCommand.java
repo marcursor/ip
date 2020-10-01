@@ -17,7 +17,12 @@ public class DoneCommand extends Command {
     public void execute(Storage storage, TasksList tasks, Ui ui) {
         String commandDescription = fullCommand.replace("done", "").trim();
 
-        int doneTaskIndex = Integer.parseInt(commandDescription) - 1;
+        int doneTaskIndex = -1;
+        try {
+            doneTaskIndex = Integer.parseInt(commandDescription) - 1;
+        } catch (NumberFormatException e) {
+            ui.printMissingNumberMessage();
+        }
 
         try {
             tasks.markTaskAsDone(doneTaskIndex, ui);

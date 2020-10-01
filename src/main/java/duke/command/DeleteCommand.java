@@ -17,7 +17,12 @@ public class DeleteCommand extends Command {
     public void execute(Storage storage, TasksList tasks, Ui ui) {
         String commandDescription = fullCommand.replace("delete", "").trim();
 
-        int taskToDeleteIndex = Integer.parseInt(commandDescription) - 1;
+        int taskToDeleteIndex = -1;
+        try {
+            taskToDeleteIndex = Integer.parseInt(commandDescription) - 1;
+        } catch (NumberFormatException e) {
+            ui.printMissingNumberMessage();
+        }
 
         try {
             tasks.deleteTaskFromList(taskToDeleteIndex, ui);

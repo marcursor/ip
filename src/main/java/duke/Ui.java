@@ -113,6 +113,10 @@ public class Ui {
         System.out.println("I regret to inform you that I could not find any tasks matching that keyword.");
     }
 
+    public void printMissingNumberMessage() {
+        System.out.println("I require a valid task index. Please input a number within the task list index.");
+    }
+
     public void showErrorMessage(String errorMessage) {
         System.out.println(errorMessage);
     }
