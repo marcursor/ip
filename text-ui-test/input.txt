@@ -7,8 +7,21 @@ list
 done 2
 done 3
 list
-done 4
-delete 3
 delete 2
-delete 1
+list
+todo error tests
+done 4
+delete 5
+done
+delete
+todotaskwithnospace
+todo
+deadline
+deadline /by
+deadline test /by
+event
+event /at
+event /at sometime
+event phase 3 /by
+
 bye

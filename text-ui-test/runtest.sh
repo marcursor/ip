@@ -12,6 +12,11 @@ then
     rm ACTUAL.TXT
 fi
 
+if [ -e "./data/taskslist.txt" ]
+then
+    rm data/taskslist.txt
+fi
+
 # compile the code into the bin folder, terminates if error occurred
 if ! javac -cp ../src -Xlint:none -d ../bin ../src/main/java/duke/*.java ../src/main/java/duke/task/*.java ../src/main/java/duke/exception/*.java ../src/main/java/duke/command/*.java
 then

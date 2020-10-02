@@ -1,5 +1,5 @@
 ____________________________________________________________
-Existing tasklist loaded.
+No existing tasklist found, new tasklist created.
 ____________________________________________________________
 Botty McBotface, at your service.
 Your wish is my command.
@@ -40,19 +40,45 @@ Here is your list of tasks:
 2.  [D][✓] submit increments (by: tonight)
 3.  [E][✓] party (at: everyday)
 ____________________________________________________________
-I require a valid task index. Please input a number within the task list index.
-____________________________________________________________
-I have removed the following from your list of tasks:
-  [E][✓] party (at: everyday)
-You now have 2 tasks in the list.
-____________________________________________________________
 I have removed the following from your list of tasks:
   [D][✓] submit increments (by: tonight)
-You now have 1 task in the list.
+You now have 2 tasks in the list.
 ____________________________________________________________
-I have removed the following from your list of tasks:
-  [T][✓] everything
-You now have 0 tasks in the list.
+Here is your list of tasks:
+1.  [T][✓] everything
+2.  [E][✓] party (at: everyday)
+____________________________________________________________
+I have added the following to your list of tasks:
+  [T][✘] error tests
+You now have 3 tasks in the list.
+____________________________________________________________
+I require a valid task index. Please input a number within the task list index.
+____________________________________________________________
+I require a valid task index. Please input a number within the task list index.
+____________________________________________________________
+I require a valid task index. Please input a number within the task list index.
+____________________________________________________________
+I require a valid task index. Please input a number within the task list index.
+____________________________________________________________
+My humblest apologies, I do not know what that means.
+____________________________________________________________
+Pardon me, but the description of a task cannot be empty.
+____________________________________________________________
+Excuse me sir, but you seem to have excluded the description or date.
+____________________________________________________________
+Excuse me sir, but you seem to have excluded the description or date.
+____________________________________________________________
+Excuse me sir, but you seem to have excluded the description or date.
+____________________________________________________________
+Excuse me sir, but you seem to have excluded the description or date.
+____________________________________________________________
+Excuse me sir, but you seem to have excluded the description or date.
+____________________________________________________________
+My humblest apologies, but you need to provide a date for this task.
+____________________________________________________________
+Excuse me sir, but you seem to have excluded the description or date.
+____________________________________________________________
+My humblest apologies, I do not know what that means.
 ____________________________________________________________
 Very well. Goodbye.
 ____________________________________________________________

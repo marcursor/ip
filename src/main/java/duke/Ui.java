@@ -81,28 +81,16 @@ public class Ui {
         System.out.println("I require a valid task index. Please input a number within the task list index.");
     }
 
-    public void printMissingTodoDescriptionMessage() {
-        System.out.println("Pardon me, but the description of a todo task cannot be empty.");
+    public void printMissingTaskDescriptionMessage() {
+        System.out.println("Pardon me, but the description of a task cannot be empty.");
     }
 
     public void printMissingDescriptionOrDateMessage() {
         System.out.println("Excuse me sir, but you seem to have excluded the description or date.");
     }
 
-    public void printMissingDeadlineDescriptionMessage() {
-        System.out.println("Pardon me, but the description of a deadline task cannot be empty.");
-    }
-
-    public void printMissingDeadlineDateMessage() {
-        System.out.println("My humblest apologies, but there is no date for the deadline.");
-    }
-
-    public void printMissingEventDescriptionMessage() {
-        System.out.println("My humblest apologies, but the event is missing a date.");
-    }
-
-    public void printMissingEventDateMessage() {
-        System.out.println("Pardon me, but the description of an event cannot be empty.");
+    public void printMissingDateMessage() {
+        System.out.println("My humblest apologies, but you need to provide a date for this task.");
     }
 
     public void printMissingKeywordMessage() {

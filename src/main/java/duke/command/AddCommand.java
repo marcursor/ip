@@ -37,7 +37,7 @@ public class AddCommand extends Command {
                 tasks.addTaskToList(newTaskToAdd, ui);
                 storage.saveTasksListToFile(tasks.tasksList);
             } catch (MissingDescriptionException e) {
-                ui.printMissingTodoDescriptionMessage();
+                ui.printMissingTaskDescriptionMessage();
             }
             break;
         case "deadline": // add a deadline task
@@ -50,9 +50,9 @@ public class AddCommand extends Command {
                 tasks.addTaskToList(newTaskToAdd, ui);
                 storage.saveTasksListToFile(tasks.tasksList);
             } catch (MissingDescriptionException e) {
-                ui.printMissingDeadlineDescriptionMessage();
+                ui.printMissingTaskDescriptionMessage();
             } catch (MissingDateException e) {
-                ui.printMissingDeadlineDateMessage();
+                ui.printMissingDateMessage();
             } catch (MissingDescriptionOrDateException e) {
                 ui.printMissingDescriptionOrDateMessage();
             }
@@ -67,9 +67,9 @@ public class AddCommand extends Command {
                 tasks.addTaskToList(newTaskToAdd, ui);
                 storage.saveTasksListToFile(tasks.tasksList);
             } catch (MissingDateException e) {
-                ui.printMissingEventDescriptionMessage();
+                ui.printMissingTaskDescriptionMessage();
             } catch (MissingDescriptionException e) {
-                ui.printMissingEventDateMessage();
+                ui.printMissingDateMessage();
             } catch (MissingDescriptionOrDateException e) {
                 ui.printMissingDescriptionOrDateMessage();
             }
