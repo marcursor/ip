@@ -60,7 +60,7 @@ public class Ui {
 
     public void printTaskCompletedMessage(Task doneTask) {
         System.out.println("I have noted the completion of this task:");
-        System.out.printf("  [%s] %s%n", doneTask.getStatusIcon(), doneTask.description);
+        System.out.println(doneTask);
     }
 
     public void printTaskDeletedMessage(int arraySize, Task deletedTask) {

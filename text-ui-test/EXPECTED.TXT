@@ -22,7 +22,7 @@ Here is your list of tasks:
 3.  [E][✘] party (at: everyday)
 ____________________________________________________________
 I have noted the completion of this task:
-  [✓] everything
+  [T][✓] everything
 ____________________________________________________________
 Here is your list of tasks:
 1.  [T][✓] everything
@@ -30,17 +30,17 @@ Here is your list of tasks:
 3.  [E][✘] party (at: everyday)
 ____________________________________________________________
 I have noted the completion of this task:
-  [✓] submit increments
+  [D][✓] submit increments (by: tonight)
 ____________________________________________________________
 I have noted the completion of this task:
-  [✓] party
+  [E][✓] party (at: everyday)
 ____________________________________________________________
 Here is your list of tasks:
 1.  [T][✓] everything
 2.  [D][✓] submit increments (by: tonight)
 3.  [E][✓] party (at: everyday)
 ____________________________________________________________
-That task is not on the list.
+I require a valid task index. Please input a number within the task list index.
 ____________________________________________________________
 I have removed the following from your list of tasks:
   [E][✓] party (at: everyday)
