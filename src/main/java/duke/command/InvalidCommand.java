@@ -12,6 +12,13 @@ public class InvalidCommand extends Command {
         super(fullCommand);
     }
 
+    /**
+     * Prints a message to inform the user if an invalid command was given as input.
+     *
+     * @param storage is not used in this command
+     * @param tasks is not used in this command
+     * @param ui is the object printing all necessary messages
+     */
     @Override
     public void execute(Storage storage, TasksList tasks, Ui ui) {
         ui.printInvalidCommandMessage();

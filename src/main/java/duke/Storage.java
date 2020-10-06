@@ -29,6 +29,11 @@ public class Storage {
 
     public final Path path;
 
+    /**
+     * Creates a storage object managing files at a given path.
+     *
+     * @param path the filepath that the storage object will be managing
+     */
     public Storage(Path path) {
         this.path = path;
     }

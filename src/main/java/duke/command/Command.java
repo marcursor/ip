@@ -11,6 +11,11 @@ import duke.exception.InvalidExecutionException;
 public class Command {
     protected String fullCommand;
 
+    /**
+     * Creates a command using the given string input.
+     *
+     * @param fullCommand is the full string input used to create the command
+     */
     public Command(String fullCommand) {
         this.fullCommand = fullCommand;
     }

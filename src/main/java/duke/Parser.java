@@ -10,7 +10,6 @@ import duke.command.InvalidCommand;
 import duke.command.ListCommand;
 import duke.exception.InvalidCommandException;
 
-
 /**
  * Parses user input.
  */

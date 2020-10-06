@@ -12,13 +12,21 @@ import duke.task.Task;
 import duke.task.Todo;
 
 /**
- * Adds a task to the tasksList.
+ * Represents a command to add a task to the tasksList.
  */
 public class AddCommand extends Command {
     public AddCommand(String fullCommand) {
         super(fullCommand);
     }
 
+    /**
+     * Adds the task assigned to the command to the tasksList.
+     * Saves the updated tasksList to an external txt file after adding the task.
+     *
+     * @param storage is the object saving the tasks to an external txt file
+     * @param tasks is the object containing the tasksList
+     * @param ui is the object printing all necessary messages
+     */
     @Override
     public void execute(Storage storage, TasksList tasks, Ui ui) {
         String[] commandStringArray = fullCommand.split(" ",2);

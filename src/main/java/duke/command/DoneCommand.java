@@ -13,6 +13,15 @@ public class DoneCommand extends Command {
         super(fullCommand);
     }
 
+    /**
+     * Marks a given task from the tasksList as done.
+     * The task to be marked done is indicated by an integer corresponding to its index in the list.
+     * Saves the updated tasksList to an external txt file after marking task as done.
+     *
+     * @param storage is the object saving the tasks to an external txt file
+     * @param tasks is the object containing the tasksList
+     * @param ui is the object printing all necessary messages
+     */
     @Override
     public void execute(Storage storage, TasksList tasks, Ui ui) {
         String commandDescription = fullCommand.replace("done", "").trim();

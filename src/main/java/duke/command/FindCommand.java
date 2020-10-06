@@ -7,13 +7,20 @@ import duke.exception.MissingDescriptionException;
 import duke.exception.NoMatchingTasksException;
 
 /**
- * Finds tasks matching a given keyword in the tasksList.
+ * Represents a command to find tasks matching a given keyword in the tasksList.
  */
 public class FindCommand extends Command {
     public FindCommand(String fullCommand) {
         super(fullCommand);
     }
 
+    /**
+     * Finds all tasks in the tasksList that contain the given keyword.
+     *
+     * @param storage is not used in this command
+     * @param tasks is the object containing the tasksList
+     * @param ui is the object printing all necessary messages
+     */
     @Override
     public void execute(Storage storage, TasksList tasks, Ui ui) {
         String keyword = fullCommand.replaceFirst("find", "").trim();
